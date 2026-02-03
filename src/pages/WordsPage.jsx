@@ -23,10 +23,7 @@ const WordsPage = () => {
       const matchesSearch =
         word.english.toLowerCase().includes(searchTerm.toLowerCase()) ||
         word.uzbek.toLowerCase().includes(searchTerm.toLowerCase());
-
-      const matchesCategory =
-        selectedCategory === 'all' || word.category === selectedCategory;
-
+      const matchesCategory = selectedCategory === 'all' || word.category === selectedCategory;
       return matchesSearch && matchesCategory;
     });
   }, [words, searchTerm, selectedCategory]);
@@ -49,38 +46,19 @@ const WordsPage = () => {
     e.preventDefault();
     if (newWord.english && newWord.uzbek) {
       addWord(newWord);
-      setNewWord({
-        english: '',
-        uzbek: '',
-        category: 'level1',
-        example: '',
-        exampleTranslation: ''
-      });
+      setNewWord({ english: '', uzbek: '', category: 'level1', example: '', exampleTranslation: '' });
       setShowAddForm(false);
     }
   };
 
-  const categoryIcons = {
-    level1: '📘',
-    level2: '📗',
-    level3: '📙',
-    level4: '📕'
-  };
-
-  const categoryLabels = {
-    level1: 'Daraja 1',
-    level2: 'Daraja 2',
-    level3: 'Daraja 3',
-    level4: 'Daraja 4'
-  };
+  const categoryIcons = { level1: '📘', level2: '📗', level3: '📙', level4: '📕' };
+  const categoryLabels = { level1: 'Daraja 1', level2: 'Daraja 2', level3: 'Daraja 3', level4: 'Daraja 4' };
 
   return (
     <div className="space-y-6">
-      <div className="bg-white rounded-xl p-6 shadow-md">
+      <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-md">
         <div className="flex items-center justify-between mb-4">
-          <h1 className="text-3xl font-bold text-gray-800">
-            📚 So'zlar ro'yxati
-          </h1>
+          <h1 className="text-3xl font-bold text-gray-800 dark:text-gray-100">📚 So'zlar ro'yxati</h1>
           <button
             onClick={() => setShowAddForm(!showAddForm)}
             className="bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition-colors"
@@ -90,44 +68,32 @@ const WordsPage = () => {
         </div>
 
         {showAddForm && (
-          <form onSubmit={handleAddWord} className="bg-indigo-50 rounded-lg p-4 mb-4 space-y-3">
+          <form onSubmit={handleAddWord} className="bg-indigo-50 dark:bg-indigo-900 rounded-lg p-4 mb-4 space-y-3">
             <div className="grid md:grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Ingliz tilida *
-                </label>
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Ingliz tilida *</label>
                 <input
-                  type="text"
-                  required
-                  value={newWord.english}
+                  type="text" required value={newWord.english}
                   onChange={(e) => setNewWord({ ...newWord, english: e.target.value })}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                  className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-800 dark:text-gray-100"
                   placeholder="Masalan: hello"
                 />
               </div>
-
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  O'zbek tilida *
-                </label>
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">O'zbek tilida *</label>
                 <input
-                  type="text"
-                  required
-                  value={newWord.uzbek}
+                  type="text" required value={newWord.uzbek}
                   onChange={(e) => setNewWord({ ...newWord, uzbek: e.target.value })}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                  className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-800 dark:text-gray-100"
                   placeholder="Masalan: salom"
                 />
               </div>
-
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Daraja
-                </label>
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Daraja</label>
                 <select
                   value={newWord.category}
                   onChange={(e) => setNewWord({ ...newWord, category: e.target.value })}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                  className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-800 dark:text-gray-100"
                 >
                   <option value="level1">📘 Daraja 1</option>
                   <option value="level2">📗 Daraja 2</option>
@@ -135,38 +101,26 @@ const WordsPage = () => {
                   <option value="level4">📕 Daraja 4</option>
                 </select>
               </div>
-
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Misol (ingliz tili)
-                </label>
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Misol (ingliz tili)</label>
                 <input
-                  type="text"
-                  value={newWord.example}
+                  type="text" value={newWord.example}
                   onChange={(e) => setNewWord({ ...newWord, example: e.target.value })}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                  className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-800 dark:text-gray-100"
                   placeholder="Misol jumla"
                 />
               </div>
-
               <div className="md:col-span-2">
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Misol tarjimasi (o'zbek tili)
-                </label>
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Misol tarjimasi (o'zbek tili)</label>
                 <input
-                  type="text"
-                  value={newWord.exampleTranslation}
+                  type="text" value={newWord.exampleTranslation}
                   onChange={(e) => setNewWord({ ...newWord, exampleTranslation: e.target.value })}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                  className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-800 dark:text-gray-100"
                   placeholder="Misol tarjimasi"
                 />
               </div>
             </div>
-
-            <button
-              type="submit"
-              className="w-full bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition-colors font-medium"
-            >
+            <button type="submit" className="w-full bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition-colors font-medium">
               So'z qo'shish
             </button>
           </form>
@@ -178,33 +132,24 @@ const WordsPage = () => {
             placeholder="So'z qidirish... (ingliz yoki o'zbek tilinda)"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+            className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-800 dark:text-gray-100"
           />
         </div>
 
         <div className="flex gap-2 overflow-x-auto pb-2">
           <button
             onClick={() => setSelectedCategory('all')}
-            className={`px-4 py-2 rounded-lg whitespace-nowrap transition-colors ${
-              selectedCategory === 'all'
-                ? 'bg-indigo-600 text-white'
-                : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
-            }`}
+            className={'px-4 py-2 rounded-lg whitespace-nowrap transition-colors ' + (selectedCategory === 'all' ? 'bg-indigo-600 text-white' : 'bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-600')}
           >
             Hammasi ({words.length})
           </button>
           {categories.map((category) => {
             const count = words.filter(w => w.category === category).length;
-
             return (
               <button
                 key={category}
                 onClick={() => setSelectedCategory(category)}
-                className={`px-4 py-2 rounded-lg whitespace-nowrap transition-colors ${
-                  selectedCategory === category
-                    ? 'bg-indigo-600 text-white'
-                    : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
-                }`}
+                className={'px-4 py-2 rounded-lg whitespace-nowrap transition-colors ' + (selectedCategory === category ? 'bg-indigo-600 text-white' : 'bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-600')}
               >
                 {categoryIcons[category]} {categoryLabels[category]} ({count})
               </button>
@@ -213,13 +158,9 @@ const WordsPage = () => {
         </div>
       </div>
 
-      <div className="text-center text-gray-600">
+      <div className="text-center text-gray-600 dark:text-gray-400">
         {filteredWords.length} ta so'z topildi
-        {totalPages > 1 && (
-          <span className="ml-2">
-            (Sahifa {currentPage} / {totalPages})
-          </span>
-        )}
+        {totalPages > 1 && <span className="ml-2">(Sahifa {currentPage} / {totalPages})</span>}
       </div>
 
       {currentWords.length > 0 ? (
@@ -235,11 +176,7 @@ const WordsPage = () => {
               <button
                 onClick={() => setCurrentPage(prev => Math.max(1, prev - 1))}
                 disabled={currentPage === 1}
-                className={`w-full sm:w-auto px-4 sm:px-6 py-3 rounded-lg font-medium transition-colors ${
-                  currentPage === 1
-                    ? 'bg-gray-200 text-gray-400 cursor-not-allowed'
-                    : 'bg-indigo-600 text-white hover:bg-indigo-700 active:bg-indigo-800'
-                }`}
+                className={'w-full sm:w-auto px-4 sm:px-6 py-3 rounded-lg font-medium transition-colors ' + (currentPage === 1 ? 'bg-gray-200 dark:bg-gray-700 text-gray-400 dark:text-gray-500 cursor-not-allowed' : 'bg-indigo-600 text-white hover:bg-indigo-700 active:bg-indigo-800')}
               >
                 ← Oldingi
               </button>
@@ -247,25 +184,15 @@ const WordsPage = () => {
               <div className="flex items-center gap-1 sm:gap-2 overflow-x-auto max-w-full pb-2 sm:pb-0">
                 {Array.from({ length: Math.min(5, totalPages) }, (_, i) => {
                   let pageNum;
-                  if (totalPages <= 5) {
-                    pageNum = i + 1;
-                  } else if (currentPage <= 3) {
-                    pageNum = i + 1;
-                  } else if (currentPage >= totalPages - 2) {
-                    pageNum = totalPages - 4 + i;
-                  } else {
-                    pageNum = currentPage - 2 + i;
-                  }
-
+                  if (totalPages <= 5) { pageNum = i + 1; }
+                  else if (currentPage <= 3) { pageNum = i + 1; }
+                  else if (currentPage >= totalPages - 2) { pageNum = totalPages - 4 + i; }
+                  else { pageNum = currentPage - 2 + i; }
                   return (
                     <button
                       key={pageNum}
                       onClick={() => setCurrentPage(pageNum)}
-                      className={`w-10 h-10 sm:w-12 sm:h-12 rounded-lg font-medium transition-colors flex-shrink-0 ${
-                        currentPage === pageNum
-                          ? 'bg-indigo-600 text-white'
-                          : 'bg-gray-200 text-gray-700 hover:bg-gray-300 active:bg-gray-400'
-                      }`}
+                      className={'w-10 h-10 sm:w-12 sm:h-12 rounded-lg font-medium transition-colors flex-shrink-0 ' + (currentPage === pageNum ? 'bg-indigo-600 text-white' : 'bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-600 active:bg-gray-400')}
                     >
                       {pageNum}
                     </button>
@@ -276,11 +203,7 @@ const WordsPage = () => {
               <button
                 onClick={() => setCurrentPage(prev => Math.min(totalPages, prev + 1))}
                 disabled={currentPage === totalPages}
-                className={`w-full sm:w-auto px-4 sm:px-6 py-3 rounded-lg font-medium transition-colors ${
-                  currentPage === totalPages
-                    ? 'bg-gray-200 text-gray-400 cursor-not-allowed'
-                    : 'bg-indigo-600 text-white hover:bg-indigo-700 active:bg-indigo-800'
-                }`}
+                className={'w-full sm:w-auto px-4 sm:px-6 py-3 rounded-lg font-medium transition-colors ' + (currentPage === totalPages ? 'bg-gray-200 dark:bg-gray-700 text-gray-400 dark:text-gray-500 cursor-not-allowed' : 'bg-indigo-600 text-white hover:bg-indigo-700 active:bg-indigo-800')}
               >
                 Keyingi →
               </button>
@@ -290,9 +213,7 @@ const WordsPage = () => {
       ) : (
         <div className="text-center py-12">
           <div className="text-6xl mb-4">😔</div>
-          <p className="text-xl text-gray-600">
-            Hech qanday so'z topilmadi
-          </p>
+          <p className="text-xl text-gray-600 dark:text-gray-400">Hech qanday so'z topilmadi</p>
         </div>
       )}
     </div>

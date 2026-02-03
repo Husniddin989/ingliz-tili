@@ -1,0 +1,16 @@
+{
+  "name": "Ingliz Tili O'rganish Platformasi",
+  "short_name": "Ingliz Tili",
+  "description": "Ingliz tilini o'rganish uchun interaktiv platforma",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#eff6ff",
+  "theme_color": "#4f46e5",
+  "icons": [
+    {
+      "src": "/vite.svg",
+      "type": "image/svg+xml",
+      "sizes": "any"
+    }
+  ]
+}
